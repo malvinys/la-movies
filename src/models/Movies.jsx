@@ -10,10 +10,10 @@ export const Movies = createSlice({
   initialState: {
     movies: null,
     movie: null,
-    filters: {
+    search: {
       keywords: null,
       year: null,
-      result: [],
+      results: null,
     },
   },
   reducers: {
@@ -23,6 +23,9 @@ export const Movies = createSlice({
     setMovie: (state, action) => {
       state.movie = action.payload;
     },
+    setSearch: (state, action) => {
+      state.search = action.payload;
+    },
   },
 });
 
@@ -31,11 +34,16 @@ export const moviesSelector = (state) => state.movies;
 export const moviesReducer = Movies.reducer;
 
 export const fetchMovies = () => async (dispatch) => {
-  const resMovies = await Request.backend('GET', Api.getMovies);
-  dispatch(moviesActions.setMovies(resMovies));
+  const res = await Request.backend('GET', Api.getMovies);
+  dispatch(moviesActions.setMovies(res));
 };
 
 export const fetchDetailMovie = (id) => async (dispatch) => {
-  const resDetailMovie = await Request.backend('GET', `${Api.getDetailMovie}/${id}`);
-  dispatch(moviesActions.setMovie(resDetailMovie));
+  const res = await Request.backend('GET', `${Api.getDetailMovie}/${id}`);
+  dispatch(moviesActions.setMovie(res));
+};
+
+export const fetchSearchMovie = (keywords, year) => async (dispatch) => {
+  const res = await Request.backend('GET', `${Api.getSearchMovie}?query=${keywords || 'a'}&year=${year || ''}`);
+  dispatch(moviesActions.setSearch({ keywords, year, results: res }));
 };
