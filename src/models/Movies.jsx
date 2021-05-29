@@ -20,6 +20,9 @@ export const Movies = createSlice({
     setMovies: (state, action) => {
       state.movies = action.payload;
     },
+    setMovie: (state, action) => {
+      state.movie = action.payload;
+    },
   },
 });
 
@@ -30,4 +33,9 @@ export const moviesReducer = Movies.reducer;
 export const fetchMovies = () => async (dispatch) => {
   const resMovies = await Request.backend('GET', Api.getMovies);
   dispatch(moviesActions.setMovies(resMovies));
+};
+
+export const fetchDetailMovie = (id) => async (dispatch) => {
+  const resDetailMovie = await Request.backend('GET', `${Api.getDetailMovie}/${id}`);
+  dispatch(moviesActions.setMovie(resDetailMovie));
 };

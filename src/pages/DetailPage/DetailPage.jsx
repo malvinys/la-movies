@@ -1,27 +1,60 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { fetchDetailMovie, moviesSelector } from '../../models/Movies';
+
+import Api from '../../configs/Api';
 
 const DetailPage = () => {
   const { id } = useParams();
-  console.log('id', id);
+  const dispatch = useDispatch();
+  const { movie } = useSelector(moviesSelector);
+  const [backdrop, setBackdrop] = useState();
+  const [image, setImage] = useState();
+  const [title, setTitle] = useState('Loading...');
+  const [releaseYear, setReleaseYear] = useState('Loading...');
+  const [rating, setRating] = useState('...');
+  const [overview, setOverview] = useState('Loading...');
+
+  useEffect(() => {
+    dispatch(fetchDetailMovie(id));
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (movie) {
+      const backdropUrl = Api.baseUrlDetailBackdrop + movie.backdrop_path;
+      const imageUrl = Api.baseUrlDetailImage + movie.poster_path;
+      const releaseDate = new Date(movie.release_date);
+      const getReleseYear = releaseDate.getFullYear();
+
+      setBackdrop(backdropUrl);
+      setImage(imageUrl);
+      setTitle(movie.title);
+      setReleaseYear(getReleseYear);
+      setRating(movie.vote_average);
+      setOverview(movie.overview);
+    }
+  }, [movie]);
 
   return (
     <>
-      <section className="base-section section-movie-detail" style={{ backgroundImage: 'linear-gradient(to right, rgB(0,0,0, 0.8) 0%, rgB(0,0,0, 0.6) 100%), url("banner.jpg")' }}>
-        <img className="section-movie-detail-image" src="movie-detail.jpg" alt="" />
+      <section className="base-section section-movie-detail" style={{ backgroundImage: `linear-gradient(to right, rgB(0,0,0, 0.8) 0%, rgB(0,0,0, 0.6) 100%), url("${backdrop}")` }}>
+        {image && <img className="section-movie-detail-image" src={image} alt={title} />}
         <div className="section-movie-detail-content">
           <h2>
-            Movie 1
-            <span>(2021)</span>
+            {title}
+            <span>
+              (
+              {releaseYear}
+              )
+            </span>
           </h2>
-          <div className="section-movie-detail-content-rating">74</div>
+          <div className="section-movie-detail-content-rating">{rating}</div>
           <p>
             Overview
             <br />
-            <span>
-              A group of unlikely heroes from across the Korean peninsula try to save the day
-              after a volcano erupts on the mythical and majestic Baekdu Mountain.
-            </span>
+            <span>{overview}</span>
           </p>
         </div>
       </section>
