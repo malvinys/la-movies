@@ -9,6 +9,12 @@ export const Movies = createSlice({
   name: 'movies',
   initialState: {
     movies: null,
+    movie: null,
+    filters: {
+      keywords: null,
+      year: null,
+      result: [],
+    },
   },
   reducers: {
     setMovies: (state, action) => {
@@ -21,14 +27,7 @@ export const moviesActions = Movies.actions;
 export const moviesSelector = (state) => state.movies;
 export const moviesReducer = Movies.reducer;
 
-export const setMoviesReducer = async (dispatch, movies) => {
-  const { count, next, data } = await movies;
-  dispatch(moviesActions.setMovies({ count, next, data }));
-};
-
-export const fetchMovies = (nextPageUrl = null) => async (dispatch) => {
-  if (!nextPageUrl) {
-    const resMovies = await Request.backend('GET', Api.getMovies);
-    setMoviesReducer(dispatch, resMovies);
-  }
+export const fetchMovies = () => async (dispatch) => {
+  const resMovies = await Request.backend('GET', Api.getMovies);
+  dispatch(moviesActions.setMovies(resMovies));
 };
