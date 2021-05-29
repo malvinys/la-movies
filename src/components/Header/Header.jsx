@@ -28,7 +28,7 @@ const Header = () => {
     if (search.results) {
       setSearchResults(search.results.results);
     }
-  }, [keywords, filterYear]);
+  }, [dispatch, keywords, filterYear]);
 
   const handleSearchClick = () => {
     setIsSearch(!isSearch);
