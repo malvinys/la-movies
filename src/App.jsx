@@ -4,10 +4,8 @@ import Routes from './routes/Routes';
 
 function App() {
   return (
-    <div className="App">
-      <div className="container">
-        <Routes />
-      </div>
+    <div className="base-canvas">
+      <Routes />
     </div>
   );
 }

@@ -1,0 +1,80 @@
+.base-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 20px;
+    background-color: $colorTmdbDarkBlue;
+    height: 64px;
+
+    &-brand {
+        font-size: 28px;
+        font-weight: 900;
+        background: linear-gradient(to right, $colorTmdbLightGreen 0%, $colorTmdbLightBlue 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    &-seacrh {
+        &-icon {
+            font-size: 20px;
+            color: $colorTmdbLightBlue;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &-bar {
+            position: absolute;
+            width: 100%;
+            background: $colorWhite;
+
+            &-filter {
+                display: flex;
+                justify-content: space-between;
+                padding: 12px 20px;
+
+                &-keyword {
+                    margin-right: 20px;
+                    flex: 1;
+                    padding: 6px;
+                    border-radius: 6px;
+                    border: 1px solid $colorLightGrey;
+                    color: $colorTmdbDarkBlue;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+
+                &-date {
+                    width: 160px;
+                    border-radius: 6px;
+                    border: 1px solid $colorLightGrey;
+                    color: $colorTmdbDarkBlue;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+
+            &-result {
+                display: flex;
+                flex-direction: column;
+                padding: 12px 20px;
+                border-top: 1px solid $colorLightGrey;
+
+                a {
+                    text-decoration: none;
+                    margin-bottom: 8px;
+                    color: $colorTmdbDarkBlue;
+
+                    &:hover {
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
+}

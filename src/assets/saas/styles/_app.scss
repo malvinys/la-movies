@@ -9,10 +9,21 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.App {
-    padding: 40px;
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
 
-    @media (max-width: 768px) {
-        padding: 40px 20px 80px 20px;
-    }
+::-webkit-scrollbar-track {
+    background: $colorWhite;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $colorTmdbDarkBlue;
+    border-radius: 6px;
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: $colorTmdbDarkBlue;
 }
