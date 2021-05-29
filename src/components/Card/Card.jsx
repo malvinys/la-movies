@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import Utils from '../../helpers/Utils';
 
@@ -10,7 +11,7 @@ const Card = ({
     <a href={`/${id}`}>
       <div className="base-card">
         <div className="base-card-image">
-          <img loading="lazy" className=" poster" src={image} alt={title} />
+          <LazyLoadImage src={image} alt={title} effect="blur" />
         </div>
         <div className="base-card-rating">{rating}</div>
         <div className="base-card-content">
