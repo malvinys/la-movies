@@ -44,6 +44,9 @@ export const fetchDetailMovie = (id) => async (dispatch) => {
 };
 
 export const fetchSearchMovie = (keywords, year) => async (dispatch) => {
-  const res = await Request.backend('GET', `${Api.getSearchMovie}?query=${keywords || 'a'}&year=${year || ''}`);
+  const paramQuery = keywords ? `?query=${keywords}` : '?query=a';
+  const paramYear = year ? `&year=${year}` : '';
+
+  const res = await Request.backend('GET', `${Api.getSearchMovie}${paramQuery}${paramYear}`);
   dispatch(moviesActions.setSearch({ keywords, year, results: res }));
 };
