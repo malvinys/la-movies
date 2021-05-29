@@ -3,7 +3,8 @@
     background: #032541;
     border-radius: 6px;
     position: relative;
-    height: 400px;
+    min-height: 420px;
+    height: 50vh;
 
     &:hover {
         cursor: pointer;

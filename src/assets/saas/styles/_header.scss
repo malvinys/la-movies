@@ -35,6 +35,10 @@
                 justify-content: space-between;
                 padding: 12px 20px;
 
+                @media (max-width: 425px) {
+                    flex-direction: column;
+                }
+
                 &-keywords {
                     margin-right: 20px;
                     flex: 1;
@@ -45,6 +49,12 @@
 
                     &:focus {
                         outline: none;
+                    }
+
+                    @media (max-width: 425px) {
+                        margin-bottom: 8px;
+                        margin-right: 0;
+                        width: auto;
                     }
                 }
 
@@ -57,6 +67,11 @@
                     &:focus {
                         outline: none;
                     }
+
+                    @media (max-width: 425px) {
+                        padding: 6px;
+                        width: 100%;
+                    }
                 }
             }
 
@@ -65,7 +80,7 @@
                 flex-direction: column;
                 padding: 12px 20px;
                 border-top: 1px solid $colorLightGrey;
-                box-shadow: 0px 1px 4px rgba(105, 125, 140, 0.25);
+                box-shadow: 0px 1px 4px rgba(105, 125, 140, 0.3);
 
                 a {
                     text-decoration: none;

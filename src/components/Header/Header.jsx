@@ -57,9 +57,11 @@ const Header = () => {
               {yearOptions.map(((year) => <option value={year} key={year}>{year}</option>))}
             </select>
           </div>
-          <div className="base-header-seacrh-bar-result">
-            {searchResults.map((item) => <a href={`/${item.id}`} key={item.id}>{item.title}</a>)}
-          </div>
+          {searchResults.length > 0 && (
+            <div className="base-header-seacrh-bar-result">
+              {searchResults.map((item) => <a href={`/${item.id}`} key={item.id}>{item.title}</a>)}
+            </div>
+          )}
         </div>
       )}
     </>
